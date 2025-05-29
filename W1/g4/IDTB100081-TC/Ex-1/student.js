@@ -1,14 +1,26 @@
-import fs from "fs";
+const fs = require("fs");
+const path = require("path");
 
-const filePathSync =  "./hello.txt";
-const filePathAsync = "./helloAsync.txt"
+const filePathAsync = path.resolve(__dirname, "helloAsync.txt");
+const filePathSync = path.resolve(__dirname, "hello.txt");
 
 // Write to a file (synchronously)
-fs.writeFileSync(filePathSync, "Hello, I'm Node js beginner!");
+try{
+    fs.writeFileSync(filePathSync, "Hello, I'm Node js beginner!");
+    console.log("File is written successfully!");
+}
+catch (err) {
+    console.error("Error writing file:", err);
+}
 
 // Read the file (synchronously)
-const content = fs.readFileSync(filePathSync, "utf8");
-console.log("File Content Sync: ", content);
+try{
+    const content = fs.readFileSync(filePathSync, "utf8");
+    console.log("File Content Sync: ", content);
+}
+catch (err) {
+    console.error("Error reading file:", err);
+}
 
 // Write to a file (asynchronously)
 fs.writeFile(filePathAsync, "Hello, THis is a asynchronous write!", (err) => {
